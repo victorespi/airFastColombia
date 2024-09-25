@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-header',
-  standalone: true,
-  imports: [LoginComponent],
+  standalone: true,  // Hacemos el componente standalone
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  isProfileMenuOpen = false;
+ // Propiedad para controlar la visibilidad del menú de inicio de sesión
+  showLoginMenu: boolean = false;
 
-  toggleProfileMenu() {
-    this.isProfileMenuOpen = !this.isProfileMenuOpen;
-  }
-
+   // Método para alternar la visibilidad del menú
+  toggleLoginMenu() {
+     this.showLoginMenu = !this.showLoginMenu;
 }
+}
+
