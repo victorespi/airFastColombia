@@ -1,3 +1,84 @@
+/* Ajustes para el menú de usuario */
+#user-menu {
+  position: absolute;
+  top: 100%; /* Alinea justo debajo del botón */
+  right: 0;
+  margin-top: 0.5rem;
+  width: 17rem; /* Ajusta el ancho */
+  background-color: #1c1f26; /* Fondo más oscuro */
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  visibility: hidden;  /* Oculto inicialmente */
+  opacity: 0;          /* Transición de opacidad */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 1rem; /* Añade algo de espacio interior */
+}
+
+/* Mostrar el menú al hacer hover o focus en el botón */
+#user-menu-button:focus + #user-menu,
+#user-menu-button:hover + #user-menu {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Evitar que se oculte cuando el menú esté abierto */
+#user-menu.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Estilos del formulario */
+form {
+  display: flex;
+  flex-direction: column; /* Asegura que todo esté en columna */
+  gap: 1rem; /* Añade espacio entre los campos */
+}
+
+label {
+  color: #fff; /* Texto blanco para mejor visibilidad */
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem; /* Espacio debajo del label */
+}
+
+input {
+  background-color: #2b2f3a; /* Fondo oscuro para los inputs */
+  color: #d1d5db; /* Texto claro */
+  border: 1px solid #3b3f49; /* Borde suave */
+  border-radius: 0.3rem;
+  padding: 0.5rem; /* Espacio interior */
+  font-size: 0.9rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: #4a90e2; /* Borde azul en foco */
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.5); /* Sombra alrededor */
+}
+
+
+button:hover {
+  background-color: #357ABD; /* Azul más oscuro en hover */
+}
+
+/* Ajuste del link "Olvidaste tu contraseña" */
+a {
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+
+/* Estilo para el checkbox y su label */
+.flex.items-center {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem; /* Espacio entre el checkbox y el label */
+}
+
+#remember {
+  accent-color: #4a90e2; /* Estilo del checkbox */
+}
+
+
 nav {
     position: fixed; /* Fija el navbar en la parte superior */
     top: 0; /* Para que esté en la parte superior */
@@ -5,5 +86,10 @@ nav {
     right: 0;
     z-index: 1000; /* Para que siempre esté sobre otros elementos */
   }
-  
+
+  .user-info {
+    margin-right: 10px;
+    font-size: 14px;
+    color: #555;  // Cambia los colores según el tema claro/oscuro
+  }
   
