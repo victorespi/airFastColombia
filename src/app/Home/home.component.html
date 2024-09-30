@@ -1,0 +1,131 @@
+<div class="flight-search-section">
+  <div class="trip-type">
+    <label for="round-trip">
+      <input type="radio" id="round-trip" name="trip" value="round-trip" checked>
+      <i class="fa fa-undo"></i> Ida y vuelta
+    </label>
+  
+    <label for="one-way">
+      <input type="radio" id="one-way" name="trip" value="one-way">
+      <i class="fa fa-long-arrow-right"></i> Solo ida
+    </label>
+  </div>
+
+  <div class="search-fields">
+    <div class="input-group">
+      <label for="origin">Origen</label>
+      <input id="origin" type="text" placeholder="Bogotá (BOG)" />
+    </div>
+    <div class="input-group">
+      <label for="destination">Destino</label>
+      <input id="destination" type="text" placeholder="Destino" />
+    </div>
+    <div class="input-group">
+      <label for="departure-date">Ida</label>
+      <input id="departure-date" type="date" value="2024-10-02" />
+    </div>
+    <div class="input-group">
+      <label for="return-date">Vuelta</label>
+      <input id="return-date" type="date" value="2024-10-05" />
+    </div>
+    <div class="input-group passengers-group">
+      <label for="passengers">Pasajeros</label>
+      <select id="passengers">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+    </div>
+    <button class="search-button">Buscar</button>
+  </div>
+
+  <div class="extra-links">
+    <a href="#">Hoteles</a>
+    <a href="#">Autos</a>
+  </div>
+</div>
+
+
+  <!-- Sección de promociones -->
+  <div class="promo-container">
+    <div class="promo-card">
+      <img src="assets/img/explorar.jpg" alt="El Mundo">
+      <div class="promo-text">
+        <h6>Próximo destino: el mundo</h6>
+        <p>Rompe la rutina y vuela!</p>
+        <p>Destinos internacionales desde USD 125</p>
+        <button class="buy-btn">Compra ya</button>
+      </div>
+    </div>
+  </div>
+  <!-- sesion de ofertas-->
+  <div class="offers-section">
+    <h2>Ofertas desde <a href="#">bogotá</a></h2>
+    <div class="offers-carousel">
+      <div class="offer">
+        <img src="assets/img/armenia.jpg" alt="Armenia">
+        <div class="offer-details">
+          <p>armenia</p>
+          <p>COP 147.000</p>
+        </div>
+      </div>
+      <div class="offer">
+        <img src="assets/img/medellin.jpg" alt="Medellín">
+        <div class="offer-details">
+          <p>medellín</p>
+          <p>COP 152.900</p>
+        </div>
+      </div>
+      <div class="offer">
+        <img src="assets/img/bucaramanga.jpg" alt="Bucaramanga">
+        <div class="offer-details">
+          <p>bucaramanga</p>
+          <p>COP 174.900</p>
+        </div>
+      </div>
+    </div>
+    <a href="#" class="more-offers-link">Descubrir más ofertas →</a>
+  </div>
+  
+  <div class="prepare-travel-section">
+    <h2>Prepárate para viajar</h2>
+    <div class="preparation-options">
+      <div class="option">
+        <img src="assets/img/check.png" alt="Check-in online">
+        <p>Check-in online</p>
+        <p>Obtén tu pase de abordar y ahorra tiempo en el aeropuerto.</p>
+      </div>
+      <div class="option">
+        <img src="ruta/a/icono/centro-de-ayuda.svg" alt="Centro de ayuda">
+        <p>Centro de ayuda</p>
+        <p>Busca y encuentra información útil para resolver tus preguntas.</p>
+      </div>
+      <div class="option">
+        <img src="ruta/a/icono/requisitos.svg" alt="Requisitos para viajar">
+        <p>Requisitos para viajar</p>
+        <p>Infórmate acerca de visas, vacunas y demás documentos.</p>
+      </div>
+    </div>
+  </div>
+
+  <!--iterar sobre las listas-->
+  <div class="offers-carousel">
+    <div *ngFor="let offer of offers" class="offer">
+      <img [src]="offer.imageUrl" [alt]="offer.destination">
+      <div class="offer-details">
+        <p>{{ offer.destination }}</p>
+        <p>{{ offer.price }}</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="preparation-options">
+    <div *ngFor="let option of preparationOptions" class="option">
+      <img [src]="option.icon" [alt]="option.title">
+      <p>{{ option.title }}</p>
+      <p>{{ option.description }}</p>
+    </div>
+  </div>
+  
+
