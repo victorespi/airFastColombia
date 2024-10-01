@@ -41,10 +41,7 @@
 <!-- Botones de Hoteles y Vehículos -->
 <div class="extra-links">
   <a href="#" class="link-button">Hoteles</a>
-  <a href="#" class="link-button">Autos</a>
 </div>
-
-
 
 
   <!-- Sección de promociones -->
@@ -116,25 +113,6 @@
         <p>Requisitos para viajar</p>
         <p>Infórmate acerca de visas, vacunas y demás documentos.</p>
       </div>
-    </div>
-  </div>
-
-  <!--iterar sobre las listas-->
-  <div class="offers-carousel">
-    <div *ngFor="let offer of offers" class="offer">
-      <img [src]="offer.imageUrl" [alt]="offer.destination">
-      <div class="offer-details">
-        <p>{{ offer.destination }}</p>
-        <p>{{ offer.price }}</p>
-      </div>
-    </div>
-  </div>
-  
-  <div class="preparation-options">
-    <div *ngFor="let option of preparationOptions" class="option">
-      <img [src]="option.icon" [alt]="option.title">
-      <p>{{ option.title }}</p>
-      <p>{{ option.description }}</p>
     </div>
   </div>
 </div>
