@@ -4,32 +4,30 @@
       <input type="radio" id="round-trip" name="trip" value="round-trip" checked>
       <i class="fa fa-undo"></i> Ida y vuelta
     </label>
-  
     <label for="one-way">
       <input type="radio" id="one-way" name="trip" value="one-way">
-      <i class="fa fa-long-arrow-right"></i> Solo ida
-    </label>
+      <i class="fa fa-long-arrow-right"></i> Solo ida </label>
   </div>
 
-  <div class="search-fields">
+  <div class="search-fields responsive-grid">
     <div class="input-group">
-      <label for="origin">Origen</label>
+      <label for="origin">Origen </label>
       <input id="origin" type="text" placeholder="Bogotá (BOG)" />
     </div>
     <div class="input-group">
-      <label for="destination">Destino</label>
+      <label for="destination">Destino </label>
       <input id="destination" type="text" placeholder="Destino" />
     </div>
     <div class="input-group">
-      <label for="departure-date">Ida</label>
+      <label for="departure-date">Ida </label>
       <input id="departure-date" type="date" value="2024-10-02" />
     </div>
     <div class="input-group">
-      <label for="return-date">Vuelta</label>
+      <label for="return-date">Vuelta </label>
       <input id="return-date" type="date" value="2024-10-05" />
     </div>
     <div class="input-group passengers-group">
-      <label for="passengers">Pasajeros</label>
+      <label for="passengers">Pasajeros </label>
       <select id="passengers">
         <option value="1">1</option>
         <option value="2">2</option>
@@ -40,25 +38,37 @@
     <button class="search-button">Buscar</button>
   </div>
 
-  <div class="extra-links">
-    <a href="#">Hoteles</a>
-    <a href="#">Autos</a>
-  </div>
+<!-- Botones de Hoteles y Vehículos -->
+<div class="extra-links">
+  <a href="#" class="link-button">Hoteles</a>
+  <a href="#" class="link-button">Autos</a>
 </div>
 
 
+
+
   <!-- Sección de promociones -->
-  <div class="promo-container">
-    <div class="promo-card">
-      <img src="assets/img/explorar.jpg" alt="El Mundo">
-      <div class="promo-text">
-        <h6>Próximo destino: el mundo</h6>
-        <p>Rompe la rutina y vuela!</p>
-        <p>Destinos internacionales desde USD 125</p>
-        <button class="buy-btn">Compra ya</button>
-      </div>
+  <section class="promo-section">
+    <!-- Contenido de la izquierda (imagen y texto) -->
+  <div class="promo-left">
+    <div class="promo-left-text">
+      <p>próximo destino:</p>
+      <h1>el mundo</h1>
     </div>
   </div>
+    <div class="promo-card">
+      <div class="promo-content">
+        <h2>rompe la rutina <br> y <span>¡vuela!</span></h2>
+        <p>Destinos internacionales para que conozcas</p>
+        <p>Por trayecto desde</p>
+        <h3>USD 125</h3>
+        <button>Compra ya</button>
+      </div>
+      <div class="promo-logo">
+        <img src="src/assets/img/logo.png" alt="Logo">
+      </div>
+    </div>
+  </section>
   <!-- sesion de ofertas-->
   <div class="offers-section">
     <h2>Ofertas desde <a href="#">bogotá</a></h2>
@@ -127,5 +137,6 @@
       <p>{{ option.description }}</p>
     </div>
   </div>
+</div>
   
 
