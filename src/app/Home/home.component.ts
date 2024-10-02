@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { RegisterComponent } from '../Register/register.component';
+import { CommonModule } from '@angular/common';  // Importar CommonModule
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  standalone: true,  // Convertir HomeComponent en standalone
+  imports: [CommonModule,RegisterComponent] // Importar el componente standalone aquí
 })
 export class HomeComponent {
   origin: string = 'Bogotá (BOG)';
