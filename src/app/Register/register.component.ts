@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { CondicionesServicioComponent } from '../condiciones-servicio/condiciones-servicio.component';
 import { CommonModule } from '@angular/common';
 import { PoliticaPrivacidadComponent } from '../politica-privacidad/politica-privacidad.component';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -29,6 +31,8 @@ export class RegisterComponent {
   modalTitle: string = '';
   modalContent: string = '';
 
+  constructor(private authService: AuthService, private router: Router) {}
+
   // Método para abrir el modal
   openModal(contentType: string) {
     this.modalContent = contentType;
@@ -49,20 +53,43 @@ export class RegisterComponent {
 
   onSubmit() {
     const user = {
-      email: this.email,
-      username: this.username,
-      password: this.password,
+      correo: this.email,
+      usuario: this.username,
+      contrasena: this.password,
       documento: this.documento,
       nombre: this.nombre,
       apellido: this.apellido,
-      fecha_nacimiento: this.fecha_nacimiento,
-      lugar_nacimiento: this.lugar_nacimiento,
+      fechaNacimiento: this.fecha_nacimiento,
+      lugarNacimiento: this.lugar_nacimiento,
       direccion: this.direccion,
       genero: this.genero,
       notis: this.notis,
-      id_tipo: this.id_tipo,
+      idTipo: this.id_tipo,
       estado: this.estado
     };
+
+    this.authService.register(user).subscribe({
+      next: (response) => {
+
+        //console.log('Registro exitoso', response);
+        // Si la respuesta es positiva, redirige al home o header
+        alert("Usuario registrado correctamente");
+        this.router.navigate(['/home']);
+      },
+      error: (error) => {
+        console.error('Error en el registro', error);
+        // Verificar si el error está relacionado con la edad
+        // if (error.status === 400 && error.error.mensaje === '18') {
+        if (error.status === 400) {
+          //alert('Debes ser mayor de 18 años para registrarte.');
+          alert (error.error.mensaje);
+          console.error(error.error.mensaje);
+        }
+        else {
+          alert('Hubo un error en el registro. Inténtalo de nuevo.');
+        }
+      }
+    });
 
     console.log('Formulario enviado', user);
   }
