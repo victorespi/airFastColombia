@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CondicionesServicioComponent } from '../condiciones-servicio/condiciones-servicio.component';
+import { CommonModule } from '@angular/common';
+import { PoliticaPrivacidadComponent } from '../politica-privacidad/politica-privacidad.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule],
+  imports: [CommonModule, FormsModule,CondicionesServicioComponent, PoliticaPrivacidadComponent],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
@@ -22,6 +25,27 @@ export class RegisterComponent {
   notis: boolean = false;
   id_tipo: number = 3; // Siempre 3 (cliente)
   estado: boolean = true; // Siempre true
+
+  modalTitle: string = '';
+  modalContent: string = '';
+
+  // Método para abrir el modal
+  openModal(contentType: string) {
+    this.modalContent = contentType;
+    this.modalTitle = contentType === 'condiciones' ? 'Condiciones de Servicio' : 'Política de Privacidad';
+    const modal = document.getElementById('modalDocument');
+    if (modal) {
+      modal.style.display = 'block'; // Muestra el modal
+    }
+  }
+  // Método para cerrar el modal
+  closeModal() {
+    const modal = document.getElementById('modalDocument');
+    if (modal) {
+      modal.style.display = 'none'; // Cierra el modal
+    }
+  }
+
 
   onSubmit() {
     const user = {

@@ -62,7 +62,30 @@
 
     <button type="submit" class="btn-register">Registrarse</button>
   </form>
-  <p>Al crear una cuenta, aceptas las <a href="#">Condiciones del servicio</a> y la <a href="#">Política de privacidad</a>.</p>
+  <p>Al crear una cuenta, aceptas las 
+    <a href="/condiciones-servicio" (click)="openModal('condiciones')">Condiciones del servicio</a> y la 
+    <a href="/politica-privacidad" (click)="openModal('privacidad')">Política de privacidad</a>.
+  </p>
+  
+  <!-- Modal para mostrar contenido -->
+  <div class="modal" tabindex="-1" id="modalDocument">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ modalTitle }}</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <ng-container *ngIf="modalContent === 'condiciones'">
+            <app-condiciones-servicio></app-condiciones-servicio>
+          </ng-container>
+          <ng-container *ngIf="modalContent === 'privacidad'">
+            <app-politica-privacidad></app-politica-privacidad>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
