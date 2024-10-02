@@ -13,18 +13,22 @@ export const routes: Routes = [
     path: 'home', // Nueva ruta para el componente Home
     component: HomeComponent
   },
-    {
-      path: 'register',
-      loadComponent: () => import('./Register/register.component').then(m => m.RegisterComponent), // Importa el componente de manera dinámica
-    },
-    {
-      path: 'condiciones-servicio',
+  {
+    path: 'editar-perfil', 
+    component: EditarPerfilComponent // Componente standalone
+  },
+  {
+  path: 'register',
+  loadComponent: () => import('./Register/register.component').then(m => m.RegisterComponent), // Importa el componente de manera dinámica
+  },
+  {
+  path: 'condiciones-servicio',
       loadComponent: () => import('./condiciones-servicio/condiciones-servicio.component').then(m => m.CondicionesServicioComponent), // Importa el componente de manera dinámica
-    },
-    {
-      path: 'politica-privacidad',
-      loadComponent: () => import('./politica-privacidad/politica-privacidad.component').then(m => m.PoliticaPrivacidadComponent), // Importa el componente de manera dinámica
-    },
+  },
+  {
+  path: 'politica-privacidad',
+  loadComponent: () => import('./politica-privacidad/politica-privacidad.component').then(m => m.PoliticaPrivacidadComponent), // Importa el componente de manera dinámica
+  },
   {
     path: '', // Ruta por defecto (redirección a la página Home)
     redirectTo: 'home',

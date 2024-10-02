@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-editar-perfil',
-  templateUrl: './editar-perfil.component.html'
+  standalone: true, // Asegúrate de que sea standalone
+  templateUrl: './editar-perfil.component.html',
+  styleUrls: ['./editar-perfil.component.scss']
 })
 export class EditarPerfilComponent {
-  // Aquí puedes manejar la lógica del formulario, como enviar los datos al backend
-  
+  // Lógica del componente de edición de perfil
 }
 
 

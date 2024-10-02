@@ -1,13 +1,17 @@
+<<<<<<< HEAD
 import { AuthService } from './../services/auth.service';
+=======
+>>>>>>> DEV_02_JHON
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common'; // Importa CommonModule
+import { CommonModule } from '@angular/common';
+import { EditarPerfilComponent } from '../editarperfil/editar-perfil.component'; 
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
@@ -17,6 +21,7 @@ export class HeaderComponent {
   password: string = '';  // Guarda la contraseña ingresada
   isLoggedIn: boolean = false; // Controla si el usuario está autenticado
 
+<<<<<<< HEAD
   constructor(private authService: AuthService,private router: Router) {}
 
   login() {
@@ -40,6 +45,22 @@ export class HeaderComponent {
     /*if (this.email === 'usuario@example.com' && this.password === '123456') {
       this.isLoggedIn = true; // El usuario está logueado
       this.router.navigate(['/header']);
+=======
+  constructor(private router: Router) {
+    // Verificar si el usuario ya está logueado al cargar el componente
+    const storedEmail = localStorage.getItem('userEmail');
+    if (storedEmail) {
+      this.email = storedEmail;
+      this.isLoggedIn = true;
+    }
+  }
+
+  login() {
+    if (this.email === 'usuario@example.com' && this.password === '123456') {
+      this.isLoggedIn = true;
+      // Guardar el email en localStorage para mantener la sesión
+      localStorage.setItem('userEmail', this.email);
+>>>>>>> DEV_02_JHON
       alert('Credenciales correctas');
       this.toggleLoginMenu();
     } else {
@@ -56,15 +77,21 @@ export class HeaderComponent {
     }
   }
 
-  // Método para cerrar la sesión (opcional)
+  // Método para cerrar la sesión
   logout() {
     this.isLoggedIn = false;
     this.email = '';
     this.password = '';
+    // Eliminar la sesión guardada
+    localStorage.removeItem('userEmail');
+    // Redirigir al usuario a la página de inicio
+    this.router.navigate(['/home']);
   }
 
   editarPerfil(){
     console.log('Editar perfil');
   }
 }
+
+
 
