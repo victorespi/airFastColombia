@@ -19,7 +19,13 @@ export class HeaderComponent {
   password: string = '';  // Guarda la contraseña ingresada
   isLoggedIn: boolean = false; // Controla si el usuario está autenticado
 
-  constructor(private authService: AuthService,private router: Router) {}
+  constructor(private authService: AuthService,private router: Router) {
+    const storedEmail = localStorage.getItem('userEmail');
+    if (storedEmail){
+      this.email = storedEmail;
+      this.isLoggedIn = true;
+    }
+  }
 
   login() {
     this.authService.login(this.email, this.password).subscribe(
