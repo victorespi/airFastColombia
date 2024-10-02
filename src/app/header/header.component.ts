@@ -1,12 +1,10 @@
-<<<<<<< HEAD
+
 import { AuthService } from './../services/auth.service';
-=======
->>>>>>> DEV_02_JHON
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { EditarPerfilComponent } from '../editarperfil/editar-perfil.component'; 
+import { EditarPerfilComponent } from '../editarperfil/editar-perfil.component';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +19,6 @@ export class HeaderComponent {
   password: string = '';  // Guarda la contraseña ingresada
   isLoggedIn: boolean = false; // Controla si el usuario está autenticado
 
-<<<<<<< HEAD
   constructor(private authService: AuthService,private router: Router) {}
 
   login() {
