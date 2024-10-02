@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
+import { EditarPerfilComponent } from '../editarperfil/editar-perfil.component'; 
 
 @Component({
   selector: 'app-header',
