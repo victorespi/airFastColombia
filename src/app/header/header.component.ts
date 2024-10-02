@@ -53,6 +53,8 @@ export class HeaderComponent {
     this.password = '';
     // Eliminar la sesión guardada
     localStorage.removeItem('userEmail');
+    // Redirigir al usuario a la página de inicio
+    this.router.navigate(['/home']);
   }
 }
 
