@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterComponent } from '../Register/register.component';
 import { CommonModule } from '@angular/common';  // Importar CommonModule
+import { CambiarContrasenaComponent } from '../CambiarContraseña/cambiar-contraseña.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,  // Convertir HomeComponent en standalone
-  imports: [CommonModule,RegisterComponent] // Importar el componente standalone aquí
+  imports: [CommonModule,RegisterComponent,CambiarContrasenaComponent] // Importar el componente standalone aquí
 })
 export class HomeComponent {
   origin: string = 'Bogotá (BOG)';
@@ -15,6 +16,8 @@ export class HomeComponent {
   departureDate: string = '2024-10-02';
   returnDate: string = '2024-10-05';
   passengers: number = 1;
+  showModal: boolean = false;  // Controla si el modal de cambiar contraseña se muestra
+
 
   searchFlights() {
     console.log(`Searching flights from ${this.origin} to ${this.destination}...`);
@@ -26,6 +29,16 @@ export class HomeComponent {
   
   openCars() {
     console.log('Opening car rental options...');
+  }
+
+  // Método para abrir el modal
+  openChangePasswordModal() {
+    this.showModal = true;
+  }
+
+  // Método para cerrar el modal
+  closeChangePasswordModal() {
+    this.showModal = false;
   }
   
 

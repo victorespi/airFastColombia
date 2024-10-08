@@ -3,6 +3,7 @@ import { EditarPerfilComponent } from './editarperfil/editar-perfil.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './Home/home.component';
 import { RegisterComponent } from './Register/register.component';
+import { CambiarContrasenaComponent } from './CambiarContraseña/cambiar-contraseña.component';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,10 @@ export const routes: Routes = [
   {
   path: 'condiciones-servicio',
       loadComponent: () => import('./condiciones-servicio/condiciones-servicio.component').then(m => m.CondicionesServicioComponent), // Importa el componente de manera dinámica
+  },
+  {
+    path: 'cambiar-contrasena', // Ruta del componente
+    component: CambiarContrasenaComponent // Componente standalone
   },
   {
   path: 'politica-privacidad',
