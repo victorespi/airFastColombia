@@ -67,6 +67,7 @@ export class HeaderComponent {
       userMenu.classList.toggle('active', this.showLoginMenu);
     }
   }
+  
 
   // Método para cerrar la sesión (opcional)
   logout() {
