@@ -17,13 +17,25 @@ export class HeaderComponent {
   password: string = '';  // Guarda la contraseña ingresada
   isLoggedIn: boolean = false; // Controla si el usuario está autenticado
 
-  constructor(private authService: AuthService,private router: Router) {}
+  constructor(private authService: AuthService,private router: Router) {
+    // Verificar si el usuario ya está logeado al cargar el componente
+    const storedEmail = localStorage.getItem('userEmail');
+    if (storedEmail){
+      this.email = storedEmail;
+      this.isLoggedIn = true;
+    }
+  }
 
   login() {
     this.authService.login(this.email, this.password).subscribe(
       (response) => {
         if (response.exito){
           this.isLoggedIn = true;
+          localStorage.setItem('userEmail', this.email);
+          if(response.userType){
+            this.authService.setUserType(response.userType);
+          }
+          console.log(response.userType);
           alert('Inicio de sesión exitoso');
           this.toggleLoginMenu();
           this.router.navigate(['/header']); // Redirige al usuario después de iniciar sesión
@@ -61,6 +73,10 @@ export class HeaderComponent {
     this.isLoggedIn = false;
     this.email = '';
     this.password = '';
+    // Elimina la sesion guardada
+    localStorage.removeItem('userEmail');
+    //redirige a inicio
+    this.router.navigate(['/home']);
   }
 
   editarPerfil(){
