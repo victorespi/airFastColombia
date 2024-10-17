@@ -38,7 +38,10 @@
 
     <div class="form-group">
       <label for="lugar_nacimiento">Lugar de Nacimiento</label>
-      <input id="lugar_nacimiento" type="text" [(ngModel)]="lugar_nacimiento" name="lugar_nacimiento" placeholder="Lugar de nacimiento" required />
+      <input id="lugar_nacimiento" type="text" [(ngModel)]="lugar_nacimiento" name="lugar_nacimiento" placeholder="Lugar de nacimiento" required #lugarInput (input)="searchLugarNacimiento(lugarInput.value)"/>
+      <ul *ngIf="lugares.length > 0">
+        <li *ngFor="let lugar of lugares" (click)="onSelectLugarNacimiento(lugar)">{{ lugar.display_name }}</li>
+      </ul>
     </div>
 
     <div class="form-group">

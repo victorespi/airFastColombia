@@ -3,6 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { CondicionesServicioComponent } from '../condiciones-servicio/condiciones-servicio.component';
 import { CommonModule } from '@angular/common';
 import { PoliticaPrivacidadComponent } from '../politica-privacidad/politica-privacidad.component';
+import { PlacesService } from './places.service';
+
+
+
 
 @Component({
   selector: 'app-register',
@@ -20,6 +24,7 @@ export class RegisterComponent {
   apellido: string = '';
   fecha_nacimiento: string = '';
   lugar_nacimiento: string = '';
+  lugares: any[] = [];
   direccion: string = '';
   genero: number = 1; // 1 para hombre, 2 para mujer
   notis: boolean = false;
@@ -28,6 +33,20 @@ export class RegisterComponent {
 
   modalTitle: string = '';
   modalContent: string = '';
+
+  constructor(private placesService: PlacesService) {}
+  
+  searchLugarNacimiento(query: string) {
+    this.placesService.searchPlaces(query).then(places => {
+      this.lugares = places;
+    });
+  }
+
+  onSelectLugarNacimiento(lugar: any) {
+    this.lugar_nacimiento = lugar.display_name;
+    this.lugares = [];
+  }
+
 
   // Método para abrir el modal
   openModal(contentType: string) {
