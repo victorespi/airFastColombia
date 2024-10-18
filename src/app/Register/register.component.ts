@@ -5,9 +5,6 @@ import { CommonModule } from '@angular/common';
 import { PoliticaPrivacidadComponent } from '../politica-privacidad/politica-privacidad.component';
 import { PlacesService } from './places.service';
 
-
-
-
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -30,12 +27,16 @@ export class RegisterComponent {
   notis: boolean = false;
   id_tipo: number = 3; // Siempre 3 (cliente)
   estado: boolean = true; // Siempre true
+  errorNombre: boolean = false;
+  mensajeError: string = '';
+  errorEmail: boolean = false;
+  mensajeErrorEmail: string = '';
 
   modalTitle: string = '';
   modalContent: string = '';
 
-  constructor(private placesService: PlacesService) {}
-  
+  constructor(private placesService: PlacesService) { }
+
   searchLugarNacimiento(query: string) {
     this.placesService.searchPlaces(query).then(places => {
       this.lugares = places;
@@ -46,7 +47,6 @@ export class RegisterComponent {
     this.lugar_nacimiento = lugar.display_name;
     this.lugares = [];
   }
-
 
   // Método para abrir el modal
   openModal(contentType: string) {
@@ -85,5 +85,46 @@ export class RegisterComponent {
 
     console.log('Formulario enviado', user);
   }
+
+  validarNombre() {
+    // Expresión regular para validar que solo contenga letras sin espacios
+    const regex = /^[A-Za-záéíóúÁÉÍÓÚñÑ]+$/;
+
+    // Verificamos si el nombre está vacío
+    if (this.nombre.trim() === '') {
+      this.errorNombre = true;
+      this.mensajeError = 'El nombre no puede estar vacío.';
+    }
+    // Verificamos si no cumple con la expresión regular
+    else if (!regex.test(this.nombre)) {
+      this.errorNombre = true;
+      this.mensajeError = 'El nombre solo debe contener letras.';
+    }
+    else {
+      this.errorNombre = false;
+      this.mensajeError = '';
+    }
+  }
+
+  validarEmail() {
+    // Expresión regular simple para validar el formato del correo electrónico
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Verificamos si el correo está vacío
+    if (this.email.trim() === '') {
+      this.errorEmail = true;
+      this.mensajeErrorEmail = 'El correo no puede estar vacío.';
+    }
+    // Verificamos si no cumple con la expresión regular
+    else if (!regex.test(this.email)) {
+      this.errorEmail = true;
+      this.mensajeErrorEmail = 'Formato de correo incorrecto.';
+    }
+    else {
+      this.errorEmail = false;
+      this.mensajeErrorEmail = '';
+    }
+  }
+
 }
 

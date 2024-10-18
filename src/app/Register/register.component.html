@@ -1,9 +1,22 @@
 <div class="register-container">
   <h2>Crear cuenta</h2>
   <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="email">Correo electrónico</label>
-      <input id="email" type="email" [(ngModel)]="email" name="email" placeholder="email@address.com" required />
+    <div class="form-group mb-4">
+      <label for="email" class="block text-gray-700 font-semibold mb-2">Correo electrónico</label>
+      <input
+        id="email"
+        type="email"
+        [(ngModel)]="email"
+        name="email"
+        placeholder="email@address.com"
+        required
+        (input)="validarEmail()"
+        class="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+      />
+      <!-- Mensaje de error dinámico utilizando la misma lógica que en nombre -->
+      <div *ngIf="errorEmail" class="text-red-500 mt-1 text-sm">
+        {{ mensajeErrorEmail }} <!-- Mensaje de error dinámico -->
+      </div>
     </div>
 
     <div class="form-group">
@@ -21,9 +34,21 @@
       <input id="documento" type="text" [(ngModel)]="documento" name="documento" placeholder="Documento de identidad" required />
     </div>
 
-    <div class="form-group">
-      <label for="nombre">Nombre</label>
-      <input id="nombre" type="text" [(ngModel)]="nombre" name="nombre" placeholder="Nombre" required />
+    <div class="form-group mb-4">
+      <label for="nombre" class="block text-gray-700 font-semibold mb-2">Nombre</label>
+      <input
+        id="nombre"
+        type="text"
+        [(ngModel)]="nombre"
+        name="nombre"
+        placeholder="Nombre"
+        required
+        (input)="validarNombre()"
+        class="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+      />
+      <div *ngIf="errorNombre" class="text-red-500 mt-1 text-sm">
+        {{ mensajeError }} <!-- Mensaje de error dinámico -->
+      </div>
     </div>
 
     <div class="form-group">
@@ -38,7 +63,7 @@
 
     <div class="form-group">
       <label for="lugar_nacimiento">Lugar de Nacimiento</label>
-      <input id="lugar_nacimiento" type="text" [(ngModel)]="lugar_nacimiento" name="lugar_nacimiento" placeholder="Lugar de nacimiento" required #lugarInput (input)="searchLugarNacimiento(lugarInput.value)"/>
+      <input id="lugar_nacimiento" type="text" [(ngModel)]="lugar_nacimiento" name="lugar_nacimiento" placeholder="Lugar de nacimiento" required #lugarInput (input)="searchLugarNacimiento(lugarInput.value)" />
       <ul *ngIf="lugares.length > 0">
         <li *ngFor="let lugar of lugares" (click)="onSelectLugarNacimiento(lugar)">{{ lugar.display_name }}</li>
       </ul>
@@ -65,11 +90,11 @@
 
     <button type="submit" class="btn-register">Registrarse</button>
   </form>
-  <p>Al crear una cuenta, aceptas las 
-    <a href="/condiciones-servicio" (click)="openModal('condiciones')">Condiciones del servicio</a> y la 
+  <p>Al crear una cuenta, aceptas las
+    <a href="/condiciones-servicio" (click)="openModal('condiciones')">Condiciones del servicio</a> y la
     <a href="/politica-privacidad" (click)="openModal('privacidad')">Política de privacidad</a>.
   </p>
-  
+
   <!-- Modal para mostrar contenido -->
   <div class="modal" tabindex="-1" id="modalDocument">
     <div class="modal-dialog">
@@ -92,4 +117,3 @@
 </div>
 
 
-  
