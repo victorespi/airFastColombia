@@ -12,7 +12,7 @@ export class AuthService {
   private userType: number | null = null;
 
   constructor(private http: HttpClient) { }
-
+  // cambio para test
   // Método para hacer login
   login(email: string, contrasena: string): Observable<any> {
     const body = { Correo: email, Contrasena: contrasena };
