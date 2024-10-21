@@ -40,3 +40,15 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
+.vs/front/CopilotIndices/0.2.1657.32929/CodeChunks.db
+.vs/front/CopilotIndices/0.2.1657.32929/CodeChunks.db-shm
+.vs/front/CopilotIndices/0.2.1657.32929/CodeChunks.db-wal
+.vs/front/CopilotIndices/0.2.1657.32929/SemanticSymbols.db
+.vs/front/CopilotIndices/0.2.1657.32929/SemanticSymbols.db-shm
+.vs/front/CopilotIndices/0.2.1657.32929/SemanticSymbols.db-wal
+.vs/front/FileContentIndex/996964b3-45ad-41ae-af68-1b5af4d2b2a9.vsidx
+.vs/front/v17/.wsuo
+.vs/front/v17/DocumentLayout.backup.json
+.vs/front/v17/DocumentLayout.json
