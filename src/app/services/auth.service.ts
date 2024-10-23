@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +13,17 @@ export class AuthService {
   private userType: number | null = null;
 
   constructor(private http: HttpClient) { }
-  // cambio para test
+
   // Método para hacer login
   login(email: string, contrasena: string): Observable<any> {
     const body = { Correo: email, Contrasena: contrasena };
-    return this.http.post<any>(this.apiURL, body);
+    return this.http.post<any>(this.apiURL, body).pipe(
+      tap(response => {
+        if (response && response.id){
+          localStorage.setItem('userId', response.id);
+        }
+      })
+    )
   }
 
   register(user: any): Observable<any> {
