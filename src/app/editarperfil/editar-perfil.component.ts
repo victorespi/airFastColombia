@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // Necesario si es standalone
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -14,7 +16,7 @@ export class EditarPerfilComponent {
   countries: string[] = [];
   regions: any[] = [];
   cities: string[] = [];
-  
+
   locationData = [
     {
       country: 'Colombia',
@@ -32,18 +34,22 @@ export class EditarPerfilComponent {
     }
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.editarPerfilForm = this.fb.group({
       documento: ['', [Validators.required, Validators.pattern(/^[0-9]*$/)]], // Solo números
-    nombre: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]], // Solo letras
-    apellido: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]], // Solo letras
-    correo: ['', [Validators.required, Validators.email]], // Correo electrónico válido
-    country: ['', Validators.required],
-    region: ['', Validators.required],
-    city: ['', Validators.required],
-    fecha_nacimiento: ['', Validators.required],
-    direccion: ['', Validators.required], // Dirección requerida
-    genero: ['', Validators.required] // Género requerido
+      nombre: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]], // Solo letras
+      apellido: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]], // Solo letras
+      correo: ['', [Validators.required, Validators.email]], // Correo electrónico válido
+      country: ['', Validators.required],
+      region: ['', Validators.required],
+      city: ['', Validators.required],
+      fecha_nacimiento: ['', Validators.required],
+      direccion: ['', Validators.required], // Dirección requerida
+      genero: ['', Validators.required] // Género requerido
     });
 
     this.countries = this.locationData.map(location => location.country); // Inicializar países
@@ -89,7 +95,21 @@ export class EditarPerfilComponent {
 
   submitForm() {
     if (this.editarPerfilForm.valid) {
-      console.log('Perfil actualizado', this.editarPerfilForm.value);
+      //console.log('Perfil actualizado', this.editarPerfilForm.value);
+      const id = 'id_del_usuario';
+      const profileData = this.editarPerfilForm.value;
+
+      this.authService.updateProfile(id, profileData).subscribe({
+        next: (response) => {
+          console.log('Perfil actualizado', response);
+          alert('Perfil actualizado correctamente');
+          this.router.navigate(['/home']);
+        },
+        error: (error) => {
+          console.error('Error al actualizar el perfil', error);
+          alert('Hubo un error al actualizar el perfil. Inténtalo de nuevo');
+        }
+      });
     } else {
       console.log('Formulario inválido');
     }

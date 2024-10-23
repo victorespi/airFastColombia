@@ -9,6 +9,7 @@ export class AuthService {
 
   private apiURL = 'http://localhost:5113/api/login'; // Cambia esto por tu URL del API
   private apiUrlRegister = 'http://localhost:5113/api/registro';
+  private apiUrlUpdateProfile = 'http://localhost:5113/api/editar-perfil';
   private userType: number | null = null;
 
   constructor(private http: HttpClient) { }
@@ -21,6 +22,11 @@ export class AuthService {
 
   register(user: any): Observable<any> {
     return this.http.post(this.apiUrlRegister, user);
+  }
+
+  updateProfile(id: string, profileData: any): Observable<any> {
+    const url = `http://localhost:5113/api/editar-perfil?id=${id}`;
+    return this.http.patch(url, profileData);
   }
 
   // Establecer el tipo de usuario después del login
